@@ -1,0 +1,42 @@
+FEATURES
+= caching
+= color scheme change
+= 
+
+
+- homepage: 
+			- news : speciality + category (json), all details (json), 
+			- news category 
+			- poll
+			- gallery
+			- useful links
+			- video gallery
+			- ui settings
+			- general settings
+			- user: last viewed by user, favorite by user, general comments
+			- menus
+			- widgets : 
+			- 
+
+- admin	  :
+			- admins
+			- role
+			- permission
+			- 
+
+
+pages	 : 
+			- home
+			- news
+			- news_list
+			- search
+			- contact
+			- blog
+			- user_profile
+			- 
+
+
+
+
+
+
