@@ -5,19 +5,19 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-8 col-xs-8">
-						
-						<div class="topbar-time"><strong><a href="<?php echo base_url();?>index.php/homeC">Welcome Guest to Online Rental Service</a></strong></div>
+						<?php $username = $this->session->userdata('user_name');
+							if($username == ""){
+								$username = "Guest";
+							}
+						?>
+						<div class="topbar-time"><strong><a href="<?php echo base_url();?>index.php/homeC">Welcome <?php echo "$username";?> to Online Rental Service</a></strong></div>
 						<div class="topbar-toggler"><span class="fa fa-angle-down"></span></div>
 						<ul class="topbar-list topbar-menu">
 							
 							<li><a href="#">Contact</a></li>
 							<li><a href="#">About Us</a></li>
 							
-
-
-							<li><strong><a  href="<?php echo base_url();?>index.php/loginC/register" style="color: LightSeaGreen">Register</a></strong></li>
-							<li><strong><a class="cd-signin" href="<?php echo base_url();?>index.php/loginC" style="color: DarkOliveGreen ">Login</a></strong></li>
-
+							<li><strong><a class="cd-signin" style="color: FireBrick" href="<?php echo base_url();?>index.php/loginC/do_loggout">Loggout</a></strong></li>
 							
 						</ul>
 					</div>
@@ -69,6 +69,23 @@
 							</li>
 							<!-- End Find A Home -->
 
+							<!-- Post Ad -->
+							<li class="dropdown mega-menu-fullwidth">
+								<a href="<?php echo base_url();?>index.php/propertyC">
+									Post Property
+								</a>
+							</li>
+							<!-- End Post Ad -->
+
+							<!-- My Profile -->
+							<li class="dropdown mega-menu-fullwidth">
+								<a href="<?php echo base_url();?>index.php/profileC">
+									My Profile
+								</a>
+								
+							</li>
+							<!-- End My Profile -->
+
 							<!-- Lifestyle -->
 							<li class="dropdown mega-menu-fullwidth">
 								<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
@@ -77,21 +94,12 @@
 								
 							</li>
 							<!-- End Lifestyle -->
-
-							<!-- Login -->
-							<li class="dropdown mega-menu-fullwidth" >
-								<a href="<?php echo base_url();?>index.php/loginC">
-									Login
-								</a>
-							</li>
-							<!-- Login -->
-
 							<li class="dropdown mega-menu-fullwidth">
-								<a href="<?php echo base_url();?>index.php/loginC/register">
-									Register
+								<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+									Inbox
 								</a>
+								
 							</li>
-
 						</ul>
 					</div><!--/responsive container-->
 				</div><!--/navbar-collapse-->

@@ -9,7 +9,16 @@
 <body class="header-fixed header-fixed-space-v2">
 <div class="wrapper">
 	<!--=== Header v8 ===-->
-	<?php include 'header.php'; ?>
+	<?php //include 'header.php'; 
+
+	$username = $this->session->userdata('user_name');
+	if($username == ""){
+		include 'header.php';
+	}
+	else{
+		include 'header_log.php';
+	}
+	?>
 	<!--=== End Header v8 ===-->
 
 	<!-- Master Slider -->
