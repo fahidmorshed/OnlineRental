@@ -79,7 +79,7 @@
 			    		<div class="form-group">
 			    			<strong><a  href="<?php echo base_url();?>index.php/loginC">Already Registered? Click Here!</a></strong>
 			    		</div>
-			    		<input class="btn btn-lg btn-info btn-block" type="submit" value="Login">
+			    		<input class="btn btn-lg btn-info btn-block" type="submit" name ='submit' value="Register">
 			    	</fieldset>
 			      </form>
 			    </div>

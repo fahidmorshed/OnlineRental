@@ -6,6 +6,7 @@
 				<div class="row">
 					<div class="col-sm-8 col-xs-8">
 						<?php $username = $this->session->userdata('user_name');
+							  $userid = $this->session->userdata('user_id');
 							if($username == ""){
 								$username = "Guest";
 							}
@@ -48,12 +49,42 @@
 					</div>
 				</div><!--/end responsive container-->
 
+
+				<?php
+					$homeA = "";
+					$searchA = "";
+					$propertyA = "";
+					$profileA = "";
+					$reviewA = "";
+					$inboxA = "";
+					if($page_name=='home'){
+						$homeA = "active";
+					}
+					else if($page_name=='search'){
+						$searchA = "active";
+					}
+					else if($page_name=='addproperty'){
+						$propertyA = "active";
+					}
+					else if($page_name=='my_profile'){
+						$profileA = "active";
+					}
+					else if($page_name=='recent_reviews'){
+						$reviewA = "active";
+					}
+					else if($page_name=='inbox'){
+						$inboxA = "active";
+					}
+					
+				?>
+
+
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-responsive-collapse">
 					<div class="res-container">
 						<ul class="nav navbar-nav">
 							<!-- Home -->
-							<li class="dropdown home active">
+							<li class="dropdown home <?php echo "$homeA"?>">
 								<a href="<?php echo base_url();?>index.php/homeC">
 									Home
 								</a>
@@ -62,7 +93,7 @@
 							<!-- End Home -->
 
 							<!-- Find A Home -->
-							<li class="dropdown mega-menu-fullwidth">
+							<li class="dropdown home <?php echo "$searchA"?>">
 								<a href="<?php echo base_url();?>index.php/searchC">
 									Find A Home
 								</a>
@@ -70,7 +101,7 @@
 							<!-- End Find A Home -->
 
 							<!-- Post Ad -->
-							<li class="dropdown mega-menu-fullwidth">
+							<li class="dropdown home <?php echo "$propertyA"?>">
 								<a href="<?php echo base_url();?>index.php/propertyC">
 									Post Property
 								</a>
@@ -78,7 +109,7 @@
 							<!-- End Post Ad -->
 
 							<!-- My Profile -->
-							<li class="dropdown mega-menu-fullwidth">
+							<li class="dropdown home <?php echo "$profileA"?>">
 								<a href="<?php echo base_url();?>index.php/profileC">
 									My Profile
 								</a>
@@ -87,14 +118,14 @@
 							<!-- End My Profile -->
 
 							<!-- Lifestyle -->
-							<li class="dropdown mega-menu-fullwidth">
-								<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+							<li class="dropdown home <?php echo "$reviewA"?>">
+								<a href="<?php echo base_url();?>index.php/profileC/test">
 									Recent Reviews
 								</a>
 								
 							</li>
 							<!-- End Lifestyle -->
-							<li class="dropdown mega-menu-fullwidth">
+							<li class="dropdown home <?php echo "$inboxA"?>">
 								<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
 									Inbox
 								</a>

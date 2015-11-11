@@ -1,75 +1,83 @@
 <div class="container">
-      <div class="row">
-      <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
-           <A href="edit.html" >Edit Profile</A>
+      
+      <?php
+        $datestring = "%D %M, %Y - %h:%i %a";
+          $time = time();
 
-        <A href="edit.html" >Logout</A>
-       <br>
-<p class=" text-info">May 05,2014,03:00 pm </p>
-      </div>
+        
+      ?>
+
+      <div class="row">
+      
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
    
-   
+        <?php $user_name = $this->session->userdata('user_name');?>
+        <?php $user_id = $this->session->userdata('user_id');?>
+
+        <?php
+          $query      =   $this->db->get_where('user' , array('name' => $user_name , 'user_id' => $user_id));
+          $row = $query->row();
+
+        ?>
+
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title">Sheena Kristin A.Eschor</h3>
+              <h3 class="panel-title"><strong><a href="<?php echo base_url();?>index.php/profileC"><?php echo"$row->name $row->last_name";?></a></strong></h3>
+              <a href="#">Edit</a>
+              <div>
+                <p class=" text-info"><small><?php echo mdate($datestring, $time);?></small></p>
+                
+              </div>
             </div>
             <div class="panel-body">
               <div class="row">
-                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> </div>
+                <div class="col-md-3 col-lg-3 " align="center">
+                <?php $img = "";
+                  if($row->image_id == NULL){
+                    $img = "images/users/default_user.jpg";
+                  }
+                  else{
+                    $img = "images/users/".$row->image_id;
+                  }
+                ?> 
+
+                <img src="<?php echo base_url();?><?php echo"$img";?>" class="img-circle img-responsive"></img>
+                <br></br>
+                <div id="selectImage">
+                    <label>Upload New Image</label><br>
+                    <?php echo form_open_multipart('upload_controller/do_upload');?> 
+                    <?php echo "<input type='file' name='userfile' size='20' id='file'/> "; ?>
+                    <?php echo "<input type='submit' name='submit' value='Upload' class='submit'/> ";?>
+                </div>
+                <?php echo "</form>"?>
+                <!--<input type='image' src="<?php echo base_url();?>images/extra/browse.png" class="img-box img-responsive" name="image">
+                <input type='image' src="<?php echo base_url();?>images/extra/upload.png" class="img-box img-responsive" name="image"> -->
                 
-                <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
-                  <dl>
-                    <dt>DEPARTMENT:</dt>
-                    <dd>Administrator</dd>
-                    <dt>HIRE DATE</dt>
-                    <dd>11/12/2013</dd>
-                    <dt>DATE OF BIRTH</dt>
-                       <dd>11/12/2013</dd>
-                    <dt>GENDER</dt>
-                    <dd>Male</dd>
-                  </dl>
-                </div>-->
+                </div>
+                
                 <div class=" col-md-9 col-lg-9 "> 
                   <table class="table table-user-information">
                     <tbody>
                       <tr>
-                        <td>Department:</td>
-                        <td>Programming</td>
+                        <td>Email:</td>
+                        <td><a href="mailto:info@support.com"><?php echo"$row->email";?></td>
                       </tr>
                       <tr>
-                        <td>Hire date:</td>
-                        <td>06/23/2013</td>
+                        <td>Phone:</td>
+                        <td><?php echo"$row->phone";?></td>
                       </tr>
                       <tr>
-                        <td>Date of Birth</td>
-                        <td>01/24/1988</td>
+                        <td>Address:</td>
+                        <td><?php echo"$row->address";?></td>
                       </tr>
                    
-                         <tr>
-                             <tr>
-                        <td>Gender</td>
-                        <td>Male</td>
-                      </tr>
-                        <tr>
-                        <td>Home Address</td>
-                        <td>Metro Manila,Philippines</td>
-                      </tr>
-                      <tr>
-                        <td>Email</td>
-                        <td><a href="mailto:info@support.com">info@support.com</a></td>
-                      </tr>
-                        <td>Phone Number</td>
-                        <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
-                        </td>
-                           
-                      </tr>
+                        
                      
                     </tbody>
                   </table>
                   
-                  <a href="#" class="btn btn-primary">My Sales Performance</a>
-                  <a href="#" class="btn btn-primary">Team Sales Performance</a>
+                  <a href="#" class="btn btn-primary">My Advertisements</a>
+                  <a href="#" class="btn btn-primary">My Properties</a>
                 </div>
               </div>
             </div>

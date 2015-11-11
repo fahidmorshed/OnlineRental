@@ -28,6 +28,32 @@
 		</div>
 		<!-- End Topbar blog -->
 
+
+		<?php
+					$homeA = "";
+					$searchA = "";
+					$propertyA = "";
+					$loginA = "";
+					$reviewA = "";
+					$registerA = "";
+					if($page_name=='home'){
+						$homeA = "active";
+					}
+					else if($page_name=='search'){
+						$searchA = "active";
+					}
+					else if($page_name=='login'){
+						$loginA = "active";
+					}
+					else if($page_name=='registers'){
+						$registerA = "active";
+					}
+					else if($page_name=='recent_reviews'){
+						$reviewA = "active";
+					}
+					
+				?>
+
 		<!-- Navbar -->
 		<div class="navbar mega-menu" role="navigation">
 			<div class="container">
@@ -53,7 +79,7 @@
 					<div class="res-container">
 						<ul class="nav navbar-nav">
 							<!-- Home -->
-							<li class="dropdown home active">
+							<li class="dropdown home <?php echo "$homeA"?>">
 								<a href="<?php echo base_url();?>index.php/homeC">
 									Home
 								</a>
@@ -62,7 +88,7 @@
 							<!-- End Home -->
 
 							<!-- Find A Home -->
-							<li class="dropdown mega-menu-fullwidth">
+							<li class="dropdown home <?php echo "$searchA"?>">
 								<a href="<?php echo base_url();?>index.php/searchC">
 									Find A Home
 								</a>
@@ -70,7 +96,7 @@
 							<!-- End Find A Home -->
 
 							<!-- Lifestyle -->
-							<li class="dropdown mega-menu-fullwidth">
+							<li class="dropdown home <?php echo "$reviewA"?>">
 								<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
 									Recent Reviews
 								</a>
@@ -79,14 +105,14 @@
 							<!-- End Lifestyle -->
 
 							<!-- Login -->
-							<li class="dropdown mega-menu-fullwidth" >
+							<li class="dropdown home <?php echo "$loginA"?>" >
 								<a href="<?php echo base_url();?>index.php/loginC">
 									Login
 								</a>
 							</li>
 							<!-- Login -->
 
-							<li class="dropdown mega-menu-fullwidth">
+							<li class="dropdown home <?php echo "$registerA"?>">
 								<a href="<?php echo base_url();?>index.php/loginC/register">
 									Register
 								</a>
