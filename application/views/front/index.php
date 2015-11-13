@@ -10,7 +10,7 @@
 <div class="wrapper">
 	<!--=== Header v8 ===-->
 	<?php //include 'header.php'; 
-
+	date_default_timezone_set('Asia/Dhaka');
 	$username = $this->session->userdata('user_name');
 	if($username == ""){
 		include 'header.php';

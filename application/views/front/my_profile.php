@@ -3,30 +3,19 @@
       <?php
         $datestring = "%D %M, %Y - %h:%i %a";
           $time = time();
-
-        
       ?>
 
       <div class="row">
       
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
    
-        <?php $user_name = $this->session->userdata('user_name');?>
-        <?php $user_id = $this->session->userdata('user_id');?>
-
-        <?php
-          $query      =   $this->db->get_where('user' , array('name' => $user_name , 'user_id' => $user_id));
-          $row = $query->row();
-
-        ?>
-
           <div class="panel panel-info">
             <div class="panel-heading">
               <h3 class="panel-title"><strong><a href="<?php echo base_url();?>index.php/profileC"><?php echo"$row->name $row->last_name";?></a></strong></h3>
-              <a href="#">Edit</a>
+              <a href="<?php echo base_url();?>index.php/profileC/edit">Edit Profile Info</a>
               <div>
                 <p class=" text-info"><small><?php echo mdate($datestring, $time);?></small></p>
-                
+                <p style="color: green"><?php echo "$message"?></p>
               </div>
             </div>
             <div class="panel-body">
@@ -42,17 +31,6 @@
                 ?> 
 
                 <img src="<?php echo base_url();?><?php echo"$img";?>" class="img-circle img-responsive"></img>
-                <br></br>
-                <div id="selectImage">
-                    <label>Upload New Image</label><br>
-                    <?php echo form_open_multipart('upload_controller/do_upload');?> 
-                    <?php echo "<input type='file' name='userfile' size='20' id='file'/> "; ?>
-                    <?php echo "<input type='submit' name='submit' value='Upload' class='submit'/> ";?>
-                </div>
-                <?php echo "</form>"?>
-                <!--<input type='image' src="<?php echo base_url();?>images/extra/browse.png" class="img-box img-responsive" name="image">
-                <input type='image' src="<?php echo base_url();?>images/extra/upload.png" class="img-box img-responsive" name="image"> -->
-                
                 </div>
                 
                 <div class=" col-md-9 col-lg-9 "> 

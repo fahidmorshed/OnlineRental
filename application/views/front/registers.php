@@ -68,7 +68,9 @@
 			    		<div class="form-group">
 			    			<input class="form-control" placeholder="Password" name="password" type="password" id="password" value="">
 			    		</div>
-
+			    		<div class="form-group">
+			    			<input class="form-control" placeholder="Confirm Password" name="cpassword" type="password" id="cpassword" value="">
+			    		</div>
 			    		<div class="form-group">
 			    		    <input class="form-control input-sm" placeholder="Phone" name="phone" id="phone" type="number">
 			    		</div>

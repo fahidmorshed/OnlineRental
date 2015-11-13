@@ -61,36 +61,40 @@ class LoginC extends CI_Controller{
             $data['last_name'] = $this->input->post('lastname');
             $data['email']       =   $this->input->post('email');
             $data['password']      =   $this->input->post('password');
+            $cpassword      =$this->input->post('cpassword');
             $data['phone']      =   $this->input->post('phone');
             $data['address']   =   $this->input->post('address');
             
             //$data['image_id'] = $this->input->post('userfile');
             
-            
-            $this->db->insert('user' , $data);
-
-            $query      =   $this->db->get_where('user' , array('email' => $data['email'] , 'password' => $data['password']));
-            if ($query->num_rows() > 0)
-            {
-                $row = $query->row();
-                $this->session->set_userdata('user_name', $row->name);
-                $this->session->set_userdata('user_id', $row->user_id);
-
-                redirect(base_url() . 'index.php/homeC' , 'refresh');
-                //$this->session->set_userdata('user_name', )
+            if($data['password'] != $cpassword){
+                $param1='';
+                $this->register();
             }
-            $user_id = $this->session->userdata('user_id');
-            $user_name = $this->session->userdata('user_name');
-            //do_upload();
-            //$this->crud_model->file_up($user_name, 'user', $user_id);
+            else{
+                $this->db->insert('user' , $data);
 
-            //$this->session->set_userdata('user_name', $data['name']);
-            redirect(base_url() . 'index.php/homeC' , 'refresh');
+                $query      =   $this->db->get_where('user' , array('email' => $data['email'] , 'password' => $data['password']));
+                if ($query->num_rows() > 0)
+                {
+                    $row = $query->row();
+                    $this->session->set_userdata('user_name', $row->name);
+                    $this->session->set_userdata('user_id', $row->user_id);
 
+                    redirect(base_url() . 'index.php/homeC' , 'refresh');
+                    //$this->session->set_userdata('user_name', )
+                }
+                $user_id = $this->session->userdata('user_id');
+                $user_name = $this->session->userdata('user_name');
+                //do_upload();
+                //$this->crud_model->file_up($user_name, 'user', $user_id);
+
+                //$this->session->set_userdata('user_name', $data['name']);
+                redirect(base_url() . 'index.php/homeC' , 'refresh');
+            }
 
         }
         $page_data['page_name']     = "registers";
-       
         $this->load->view('front/index', $page_data);
        
     }

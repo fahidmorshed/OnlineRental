@@ -20,8 +20,15 @@ public function do_upload(){
 		$this->load->library('upload', $config);
 		if($this->upload->do_upload())
 			{
-			$page_data['page_name'] = "home";
-    	    $this->load->view('front/index', $page_data);
+				$page_data['page_name']     = "my_profile";
+		        $page_data['page_title']    = translate('my_profile');
+		        $page_data['user_name']     = $this->session->userdata('user_name');
+		        $page_data['user_id']       = $this->session->userdata('user_id');
+		        $page_data['message']       = "Upload Successful";
+		        $query      =   $this->db->get_where('user' , array('name' => $page_data['user_name'] , 'user_id' => $page_data['user_id']));
+		        $row = $query->row();
+		        $page_data['row'] = $row;
+		        $this->load->view('front/index', $page_data);
 			}
 		else
 			{

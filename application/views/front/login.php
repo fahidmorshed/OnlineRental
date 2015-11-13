@@ -22,11 +22,9 @@
 			    		<div class="form-group">
 			    			<strong><a  href="<?php echo base_url();?>index.php/loginC/register">Click here to Register now!</a></strong>
 			    		</div>
-			    		
 			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
 			    	</fieldset>
 			      </form>
-
 			    </div>
 			</div>
 		</div>
