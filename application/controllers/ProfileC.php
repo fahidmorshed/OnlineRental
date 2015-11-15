@@ -40,6 +40,7 @@ class ProfileC extends CI_Controller{
         $data['address']   =   $this->input->post('address');
 
         $user_id = $this->session->userdata('user_id');
+        $this->session->set_userdata('user_name', $data['name']);
         $this->db->where('user_id', $user_id);
         $this->db->update('user', $data);
 

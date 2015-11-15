@@ -11,7 +11,8 @@
    
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title"><strong><a href="<?php echo base_url();?>index.php/profileC"><?php echo"$row->name $row->last_name";?></a></strong></h3>
+              <h3 class="panel-title"><strong><a href="<?php echo base_url();?>index.php/profileC">
+              <?php echo"$row->name $row->last_name";?></a></strong></h3>
               <a href="<?php echo base_url();?>index.php/profileC/edit">Edit Profile Info</a>
               <div>
                 <p class=" text-info"><small><?php echo mdate($datestring, $time);?></small></p>
