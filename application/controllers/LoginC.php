@@ -55,7 +55,7 @@ class LoginC extends CI_Controller{
         
         if ($param1 == 'create') 
         {
-            //$this->load->('crud_model');
+            $this->load->model('user_model');
             
             $data['name']     =   $this->input->post('name');
             $data['last_name'] = $this->input->post('lastname');
@@ -73,24 +73,23 @@ class LoginC extends CI_Controller{
             }
             else{
                 $this->db->insert('user' , $data);
-
                 $query      =   $this->db->get_where('user' , array('email' => $data['email'] , 'password' => $data['password']));
                 if ($query->num_rows() > 0)
                 {
                     $row = $query->row();
                     $this->session->set_userdata('user_name', $row->name);
                     $this->session->set_userdata('user_id', $row->user_id);
-
-                    redirect(base_url() . 'index.php/homeC' , 'refresh');
+                    $this->user_model->sendEmail($data['email']);
+                    //redirect(base_url() . 'index.php/homeC' , 'refresh');
                     //$this->session->set_userdata('user_name', )
                 }
-                $user_id = $this->session->userdata('user_id');
-                $user_name = $this->session->userdata('user_name');
+                //$user_id = $this->session->userdata('user_id');
+                //$user_name = $this->session->userdata('user_name');
                 //do_upload();
                 //$this->crud_model->file_up($user_name, 'user', $user_id);
 
                 //$this->session->set_userdata('user_name', $data['name']);
-                redirect(base_url() . 'index.php/homeC' , 'refresh');
+                
             }
 
         }
