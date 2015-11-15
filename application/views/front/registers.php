@@ -53,6 +53,9 @@
 			  	<div class="panel-heading">
 			    	<h3 class="panel-title">Please Sign Up <small> It's free!</small></h3>
 			 	</div>
+			 	<div class="panel-heading">
+			    	<h3 class="panel-title" style="color: red"><small><b><?php echo"$message";?></b></small></h3>
+			 	</div>
 			  	<div class="panel-body">
 			    <form accept-charset="UTF-8" action="<?php echo base_url();?>index.php/loginC/register/create"  method="post"">
                     <fieldset>

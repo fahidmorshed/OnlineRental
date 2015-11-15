@@ -6,9 +6,13 @@ class LoginC extends CI_Controller{
 
     public function index()
     {
+        if($this->session->userdata('user_name') != ""){
+            redirect(base_url() . 'index.php/homeC' , 'refresh');
+        }
         $page_data['page_name']     =  "login";
         $page_data['page_title']    = translate('login');
         $page_data['try']           = "not_tried";
+        $page_data['message']       = "";
         $this->load->view('front/index', $page_data);
     }
 
@@ -17,6 +21,7 @@ class LoginC extends CI_Controller{
         $page_data['page_name']     =  "login";
         $page_data['page_title']    = translate('login');
         $page_data['try']           = "tried";
+        $page_data['message']       = "";
         $this->load->view('front/index', $page_data);
     }
 
@@ -41,6 +46,9 @@ class LoginC extends CI_Controller{
     }
 
     function do_loggout(){
+        if($this->session->userdata('user_name') == ""){
+            redirect(base_url() . 'index.php/loginC/error' , 'refresh');
+        }
         $email = "";
         $password = "";
         $page_data['try'] = "not_tried";
@@ -52,6 +60,11 @@ class LoginC extends CI_Controller{
     function register($param1 = '')
     {
        //echo 'dsdsdsd';
+        if($this->session->userdata('user_name') != ""){
+                redirect(base_url() . 'index.php/loginC/error' , 'refresh');
+            }
+        $page_data['page_name']     = "registers";
+        $page_data['page_title']    = translate('registers');
         
         if ($param1 == 'create') 
         {
@@ -67,9 +80,15 @@ class LoginC extends CI_Controller{
             
             //$data['image_id'] = $this->input->post('userfile');
             
-            if($data['password'] != $cpassword){
+            $check_mail = $this->db->get_where('user', array('email' => $data['email']));
+            if($check_mail->num_rows() > 0){
                 $param1='';
-                $this->register();
+                $this->register('already_reg');
+            }
+
+            else if($data['password'] != $cpassword){
+                $param1='';
+                $this->register('password_mismatch');
             }
             else{
                 $this->db->insert('user' , $data);
@@ -79,9 +98,9 @@ class LoginC extends CI_Controller{
                     $row = $query->row();
                     $this->session->set_userdata('user_name', $row->name);
                     $this->session->set_userdata('user_id', $row->user_id);
-                    $this->user_model->sendEmail($data['email']);
-                    //redirect(base_url() . 'index.php/homeC' , 'refresh');
-                    //$this->session->set_userdata('user_name', )
+                    //$this->user_model->sendEmail($data['email']);   //certificate issue...
+                    redirect(base_url() . 'index.php/homeC' , 'refresh');
+                    
                 }
                 //$user_id = $this->session->userdata('user_id');
                 //$user_name = $this->session->userdata('user_name');
@@ -93,8 +112,24 @@ class LoginC extends CI_Controller{
             }
 
         }
-        $page_data['page_name']     = "registers";
-        $this->load->view('front/index', $page_data);
+        else if($param1 == "password_mismatch"){
+            $page_data['message']   = "Error: Password didn't match!";
+            $page_data['try']           = "tried";
+            $this->load->view('front/index', $page_data);
+        }
+        else if($param1 == "already_reg"){
+            $page_data['message']   = "Error: Already registered!";
+            $page_data['try']           = "tried";
+            $this->load->view('front/index', $page_data);
+        }
+        
+        else{
+            $page_data['message']   = "";
+            $page_data['try']           = "tried";
+            $param1 ="";
+            $this->load->view('front/index', $page_data);
+        };
+        
        
     }
 
@@ -105,6 +140,9 @@ class LoginC extends CI_Controller{
 
 
     function do_upload(){
+        if($this->session->userdata('user_name') == ""){
+                redirect(base_url() . 'index.php/loginC/error' , 'refresh');
+            }
      $config =  array(
                   'upload_path'     => "./uploads/",
                   'allowed_types'   => "gif|jpg|png|jpeg|pdf",

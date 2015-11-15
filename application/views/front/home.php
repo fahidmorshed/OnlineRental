@@ -31,7 +31,7 @@
 										<img class="img-responsive" src="<?php echo base_url();?>template/front/img/blog/add1.jpg" alt="">
 										<h3><a href="blog_single.html">A House On The Hill</a></h3>
 										<ul class="blog-grid-info">
-											<li>Alex Amell</li>
+											<li><a href="<?php echo base_url();?>index.php/profileC/browse_profile/3">Austin Harrington</li>
 											<li>Oct 6, 2015</li>
 											<li><a href="#"><i class="fa fa-comments"></i> 15</a></li>
 										</ul>

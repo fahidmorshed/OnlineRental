@@ -126,7 +126,7 @@
 							</li>
 							<!-- End Lifestyle -->
 							<li class="dropdown home <?php echo "$inboxA"?>">
-								<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+								<a href="<?php echo base_url();?>index.php/inboxC">
 									Inbox
 								</a>
 								

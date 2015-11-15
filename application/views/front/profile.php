@@ -12,8 +12,7 @@
           <div class="panel panel-info">
             <div class="panel-heading">
               <h3 class="panel-title"><strong><a href="<?php echo base_url();?>index.php/profileC">
-              <?php echo"$row->name $row->last_name";?></a></strong></h3>
-              <a href="<?php echo base_url();?>index.php/profileC/edit">Edit Profile Info</a>
+              <?php echo"$other_row->name $other_row->last_name";?></a></strong></h3>
               <div>
               <span class="pull-right">
                         <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
@@ -27,7 +26,7 @@
               <div class="row">
                 <div class="col-md-3 col-lg-3 " align="center">
                 <?php $img = "";
-                  if($row->image_id == NULL){
+                  if($other_row->image_id == NULL){
                     $img = "images/users/default_user.jpg";
                   }
                   else{
@@ -43,15 +42,15 @@
                     <tbody>
                       <tr>
                         <td>Email:</td>
-                        <td><a href="mailto:info@support.com"><?php echo"$row->email";?></td>
+                        <td><a href="mailto:info@support.com"><?php echo"$other_row->email";?></td>
                       </tr>
                       <tr>
                         <td>Phone:</td>
-                        <td><?php echo"$row->phone";?></td>
+                        <td><?php echo"$other_row->phone";?></td>
                       </tr>
                       <tr>
                         <td>Address:</td>
-                        <td><?php echo"$row->address";?></td>
+                        <td><?php echo"$other_row->address";?></td>
                       </tr>
                    
                         
@@ -59,8 +58,8 @@
                     </tbody>
                   </table>
                   
-                  <a href="#" class="btn btn-primary">My Advertisements</a>
-                  <a href="#" class="btn btn-primary">My Properties</a>
+                  <a href="#" class="btn btn-primary"><?php echo "$other_row->name"?>'s Advertisements</a>
+                  <a href="#" class="btn btn-primary"><?php echo "$other_row->name"?>'s' Properties</a>
                 </div>
               </div>
             </div>

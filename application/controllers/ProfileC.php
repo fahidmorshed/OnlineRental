@@ -5,6 +5,9 @@ if (!defined('BASEPATH'))
 class ProfileC extends CI_Controller{
 
 	public function index(){
+        if($this->session->userdata('user_name') == ""){
+                redirect(base_url() . 'index.php/profileC/error' , 'refresh');
+        }
         $page_data['page_name']     = "my_profile";
         $page_data['page_title']    = translate('my_profile');
         $page_data['user_name']     = $this->session->userdata('user_name');
@@ -16,12 +19,25 @@ class ProfileC extends CI_Controller{
         $this->load->view('front/index', $page_data);
     }
 
-    function test(){
-        $page_data['page_name'] = "file_view";
+    function browse_profile($other_id){
+        $page_data['page_name']     = "profile";
+        $page_data['page_title']    = translate('profile');
+        $page_data['user_name']     = $this->session->userdata('user_name');
+        $page_data['user_id']       = $this->session->userdata('user_id');
+        $page_data['message']       = "";
+        $query      =   $this->db->get_where('user' , array('name' => $page_data['user_name'] , 'user_id' => $page_data['user_id']));
+        $other_query = $this->db->get_where('user' , array('user_id' => $other_id));
+        $row = $query->row();
+        $other_row = $other_query->row();
+        $page_data['row'] = $row;
+        $page_data['other_row'] = $other_row;
         $this->load->view('front/index', $page_data);
     }
 
     function edit(){
+        if($this->session->userdata('user_name') == ""){
+                redirect(base_url() . 'index.php/profileC/error' , 'refresh');
+        }
         $page_data['user_name'] = $this->session->userdata('user_name');
         $page_data['user_id'] = $this->session->userdata('user_id');
         $page_data['page_name'] = "my_profile_edit";
@@ -32,6 +48,9 @@ class ProfileC extends CI_Controller{
     }
 
     function submit_change(){
+        if($this->session->userdata('user_name') == ""){
+                redirect(base_url() . 'index.php/profileC/error' , 'refresh');
+        }
         $data['name']     =   $this->input->post('name');
         $data['last_name'] = $this->input->post('lastname');
         $data['email']       =   $this->input->post('email');
@@ -54,6 +73,7 @@ class ProfileC extends CI_Controller{
         $row = $query->row();
         $page_data['row'] = $row;
         $this->load->view('front/index', $page_data);
+
     }
 
     function error()

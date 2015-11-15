@@ -50,6 +50,12 @@ class HomeC extends CI_Controller
         //$page_data['current_user']      = "NA";
         $this->load->view('front/index', $page_data);
     }
+
+    function test(){
+        $page_data['page_name']         = "compose_mail";
+        $page_data['page_title']        = translate('compose_mail');
+        $this->load->view('front/index', $page_data);
+    }
     
     // function search(){
     //     $page_data['page_name']     = "search";
